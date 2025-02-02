@@ -7,18 +7,32 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <input type="number" id="tempo" placeholder="Tempo (em segundos)" min="1">
-    <div class='controles'>
-        <button id="playBtn">Play</button>
-        <button id="stopBtn">Stop</button>
-    </div>
-    <div id="nota-selector">
-        <h3>Escolha as notas</h3>
-        <!-- Aqui serão inseridos os checkboxes -->
-    </div>
-    <div class="container">
-        <!-- As notas ativas serão mostradas aqui -->
-    </div>
+    <section class="principal">
+        <div class="topo">
+            <div id="nota-selector">
+                <h3>Escolha as notas</h3>
+                <div>
+                    <div id="notas-grid">
+                        <!-- Aqui serão inseridos os checkboxes -->
+                    </div>
+                    <button id="salvar_padrao">salvar</button>
+                </div>
+            </div>
+            <div id="sequencias-salvas">
+
+            </div>
+            <div class="controladores">
+                <input type="number" id="tempo" placeholder="Tempo (em segundos)" min="1" value="60">
+                <div class='controles'>
+                    <button id="playBtn">Play</button>
+                    <button id="stopBtn">Stop</button>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <!-- As notas ativas serão mostradas aqui -->
+        </div>
+    </section>
 
     <script src="index.js"></script>
 </body>
