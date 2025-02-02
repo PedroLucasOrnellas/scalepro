@@ -156,6 +156,7 @@ function exibirNotasSalvas(){
             sequencia.forEach(nota =>{
                 sequenciasSalvasDiv.innerHTML += nota + " "
             })
+            sequenciasSalvasDiv.innerHTML += '<br>'
         });
         // sequenciasSalvasDiv.innerHTML = 'Suas sequências'
     }
