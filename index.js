@@ -4,10 +4,8 @@ const stopBtn = document.getElementById('stopBtn');
 const tempoInput = document.getElementById('tempo');
 const container = document.querySelector('.container');
 const notasGrid = document.getElementById('notas-grid');
-const salvarPadrao = document.getElementById('salvar_padrao');
-const sequenciasSalvasDiv = document.getElementById('sequencias-salvas');
+
 let isPlaying = false;
-let sequenciasSalvas;
 
 // Array com todas as notas musicais
 const notasArray = [
@@ -136,35 +134,7 @@ function estilizaNotasSelecionadas(){
     });
 }
 
-function salvaSequencias(){
-    if(!sequenciasSalvas){
-        sequenciasSalvas = JSON.parse(localStorage.getItem('sequenciasSalvas')) || [];
-    }
-    const notasSelecionadas = obterNotasSelecionadas();
-    if(notasSelecionadas.length != 0) sequenciasSalvas.push(notasSelecionadas);
-    
-    localStorage.setItem('sequenciasSalvas', JSON.stringify(sequenciasSalvas));
-    console.log(sequenciasSalvas);
-}
 
-function exibirNotasSalvas(){
-    sequenciasSalvas = JSON.parse(localStorage.getItem('sequenciasSalvas'));
-    if(!sequenciasSalvas){
-        sequenciasSalvasDiv.innerHTML = 'Não há sequências salvas'
-    }else{
-        sequenciasSalvas.forEach(sequencia => {
-            sequencia.forEach(nota =>{
-                sequenciasSalvasDiv.innerHTML += nota + " "
-            })
-            sequenciasSalvasDiv.innerHTML += '<br>'
-        });
-        // sequenciasSalvasDiv.innerHTML = 'Suas sequências'
-    }
-}
-
-salvarPadrao.addEventListener('click', () => {
-    salvaSequencias();
-})
 
 // Atualiza a interface de notas selecionadas ao mudar a seleção
 notasGrid.addEventListener('change', ()=>{
