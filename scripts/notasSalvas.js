@@ -8,7 +8,8 @@ function salvaSequencias(){
         sequenciasSalvas = JSON.parse(localStorage.getItem('sequenciasSalvas')) || [];
     }
     const notasSelecionadas = obterNotasSelecionadas();
-    if(notasSelecionadas.length != 0) sequenciasSalvas.push(notasSelecionadas);
+    if(notasSelecionadas.length > 2) sequenciasSalvas.push(notasSelecionadas);
+    else alert('Pelo menos três notas devem estar selecionadas');
     
     localStorage.setItem('sequenciasSalvas', JSON.stringify(sequenciasSalvas));
     console.log(sequenciasSalvas);
