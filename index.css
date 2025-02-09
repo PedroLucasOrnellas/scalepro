@@ -36,7 +36,7 @@ body{
     max-width: 350px;
 }
 
-#nota-selector h3{
+h3{
     font-family: system-ui;
     width: 100%;
     font-size: 16px;
@@ -46,6 +46,25 @@ body{
 }
 #nota-selector div{
     display: flex;
+}
+
+#sequencias-salvas{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.sequencia-salvas-item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+.sequencia-salvas-nota{
+    background-color: #ddd;
+    padding: 5px;
 }
 
 #notas-grid{
