@@ -107,8 +107,9 @@ stopBtn.addEventListener('click', () => {
 });
 
 // Função para criar as notas visíveis na tela
-function criarNotas() {
-    const notasSelecionadas = obterNotasSelecionadas();
+function criarNotas(notas) {
+    let notasSelecionadas = obterNotasSelecionadas();
+    if(notas) notasSelecionadas = notas;
     container.innerHTML = '';
 
     notasSelecionadas.forEach(nota => {

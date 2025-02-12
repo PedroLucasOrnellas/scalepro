@@ -2,9 +2,13 @@ const salvarPadrao = document.getElementById('salvar_padrao');
 const sequenciasSalvasDiv = document.getElementById('sequencias-salvas');
 let sequenciasSalvas;
 
+function getSequenciasSalvas(){
+    return JSON.parse(localStorage.getItem('sequenciasSalvas'));
+}
 
 function salvaSequencias(){
     const notasSelecionadas = obterNotasSelecionadas();
+    const sequenciasSalvas = getSequenciasSalvas();
 
     if(!sequenciasSalvas){
         sequenciasSalvas = JSON.parse(localStorage.getItem('sequenciasSalvas')) || [];
@@ -25,9 +29,10 @@ function exibirNotasSalvas(){
     if(!sequenciasSalvas){
         sequenciasSalvasDiv.innerHTML = 'Não há sequências salvas'
     }else{
-        sequenciasSalvas.forEach(sequencia => {
+        sequenciasSalvas.forEach((sequencia, i) => {
             sequenciaASerInserida = document.createElement('div');
             sequenciaASerInserida.classList= 'sequencia-salvas-item';
+            sequenciaASerInserida.setAttribute('data-id', i);
             sequencia.forEach(nota =>{
                 notaDiv = document.createElement('div')
                 notaDiv.classList = 'sequencia-salvas-nota'
@@ -41,6 +46,42 @@ function exibirNotasSalvas(){
         // sequenciasSalvasDiv.innerHTML = 'Suas sequências'
     }
 }
+
+function carregaSequenciaEscolhida(seqClicada){
+    const idSequencia = seqClicada.getAttribute('data-id');
+    const sequenciasSalvas = getSequenciasSalvas();
+    const sequenciaEscolhida = sequenciasSalvas[idSequencia];
+
+    console.log(sequenciaEscolhida);
+    criarNotas(sequenciaEscolhida);
+    selecionarNotas(sequenciaEscolhida);
+}
+
+function selecionarNotas(sequenciaEscolhida){
+    const checkboxs = notasGrid.querySelectorAll('.nota-checkbox input');
+    sequenciaEscolhida.forEach((letra) => {
+        // console.log(letra);
+        checkboxs.forEach( letraCheckbox => {
+            if(letra === letraCheckbox.value) {
+                letraCheckbox.click()
+            }
+            else {
+                letraCheckbox.checked = false;
+                letraCheckbox.parentElement.classList = 'nota-checkbox'
+                console.log(letraCheckbox)
+            }
+        })
+    })
+}
+
+sequenciasSalvasDiv.addEventListener('click', ({target}) => {
+    let seqClicada;
+    if(target.parentElement.classList[0] === 'sequencia-salvas-item') seqClicada = target.parentElement;
+    else if(target.classList[0] === 'sequencia-salvas-item') seqClicada = target;
+    else return
+
+    carregaSequenciaEscolhida(seqClicada);
+})
 
 salvarPadrao.addEventListener('click', () => {
     salvaSequencias();
