@@ -59,17 +59,21 @@ function carregaSequenciaEscolhida(seqClicada){
 
 function selecionarNotas(sequenciaEscolhida){
     const checkboxs = notasGrid.querySelectorAll('.nota-checkbox input');
+
+    //desmarcar todas
+    checkboxs.forEach( letraCheckbox => {
+        letraCheckbox.checked = false;
+        letraCheckbox.parentElement.classList = 'nota-checkbox'
+    });
+
     sequenciaEscolhida.forEach((letra) => {
         // console.log(letra);
         checkboxs.forEach( letraCheckbox => {
             if(letra === letraCheckbox.value) {
                 letraCheckbox.click()
             }
-            else {
-                letraCheckbox.checked = false;
-                letraCheckbox.parentElement.classList = 'nota-checkbox'
-                console.log(letraCheckbox)
-            }
+            
+            console.log(letraCheckbox) 
         })
     })
 }
