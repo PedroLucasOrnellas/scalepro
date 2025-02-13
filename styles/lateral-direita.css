@@ -9,6 +9,12 @@
     bottom: 0;
 }
 
+#abrir-sequencias{
+    background-color: #444;
+    padding: 10px 20px;
+    margin-left: -180px;
+}
+
 #sequencias-salvas{
     display: flex;
     /* display: none; */
