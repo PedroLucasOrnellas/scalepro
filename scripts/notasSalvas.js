@@ -1,5 +1,6 @@
 const salvarPadrao = document.getElementById('salvar_padrao');
 const sequenciasSalvasDiv = document.getElementById('sequencias-salvas');
+const abrirSequenciasSlavas = document.getElementById('abrir-sequencias');
 let sequenciasSalvas;
 
 function getSequenciasSalvas(){
@@ -88,4 +89,8 @@ sequenciasSalvasDiv.addEventListener('click', ({target}) => {
 
 salvarPadrao.addEventListener('click', () => {
     salvaSequencias();
+})
+
+abrirSequenciasSlavas.addEventListener('click', () => {
+        document.querySelector('.lateral-direita').classList.toggle('aberto');
 })

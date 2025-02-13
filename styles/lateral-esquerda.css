@@ -1,0 +1,38 @@
+#nota-selector{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 280px;
+}
+#nota-selector div{
+    display: flex;
+    /* display: none; */
+}
+
+#notas-grid{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+#notas-grid label{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 2px;
+    background-color: gray;
+    cursor: pointer;
+}
+
+#notas-grid label:hover{
+    background-color: #b8a4a4;
+}
+
+#notas-grid label.checked{
+    background-color: #4CAF50;
+}
+
+#notas-grid label input{
+    display: none; 
+}
