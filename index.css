@@ -7,11 +7,12 @@
 
 body{
     background-color: #333;
+    overflow-x: hidden;
 }
 
 .topo{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     gap: 10px;
@@ -35,7 +36,7 @@ body{
 #nota-selector{
     display: flex;
     flex-wrap: wrap;
-    max-width: 350px;
+    max-width: 280px;
 }
 
 h3{
@@ -48,41 +49,7 @@ h3{
 }
 #nota-selector div{
     display: flex;
-}
-
-#sequencias-salvas{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-}
-
-.sequencia-salvas-item{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    padding: 5px;
-    border: solid 2px transparent;
-    transition: ease 0.3s;
-    border-radius: 5px;
-    user-select: none;
-}
-.sequencia-salvas-item:hover{
-    border: solid 2px #4CAF50;
-    filter: saturate(2);
-    cursor: pointer;
-}
-
-.sequencia-salvas-nota{
-    background-color: #ddd;
-    padding: 5px;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 2px;
+    /* display: none; */
 }
 
 #notas-grid{
@@ -95,8 +62,8 @@ h3{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     border-radius: 2px;
     background-color: gray;
     cursor: pointer;
@@ -143,7 +110,7 @@ max-width:650px;
 
 button {
     height: 38px;
-    padding: 10px 20px;
+    padding: 0px 20px;
     font-size: 16px;
     cursor: pointer;
     background-color: #333;

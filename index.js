@@ -28,7 +28,7 @@ function criarNotasCheckbox() {
 
         label.appendChild(checkbox);
         label.appendChild(text);
-        notasGrid.appendChild(label);
+        notasGrid.insertBefore(label, salvarPadrao);
     });
 }
 

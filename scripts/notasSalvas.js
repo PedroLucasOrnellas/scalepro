@@ -52,7 +52,6 @@ function carregaSequenciaEscolhida(seqClicada){
     const sequenciasSalvas = getSequenciasSalvas();
     const sequenciaEscolhida = sequenciasSalvas[idSequencia];
 
-    console.log(sequenciaEscolhida);
     criarNotas(sequenciaEscolhida);
     selecionarNotas(sequenciaEscolhida);
 }
@@ -73,7 +72,7 @@ function selecionarNotas(sequenciaEscolhida){
                 letraCheckbox.click()
             }
             
-            console.log(letraCheckbox) 
+            // console.log(letraCheckbox) 
         })
     })
 }

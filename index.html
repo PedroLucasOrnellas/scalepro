@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sarola</title>
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="styles/lateral-direita.css">
 </head>
 <body>
     <section class="principal">
@@ -14,23 +15,25 @@
                 <div>
                     <div id="notas-grid">
                         <!-- Aqui serão inseridos os checkboxes -->
+                        <button id="salvar_padrao">Salvar</button>
                     </div>
-                    <button id="salvar_padrao">salvar</button>
                 </div>
             </div>
-            <div id="sequencias-salvas">
+            <div class="lateral-direita">
                 <h3>notas salvas</h3>
-
-            </div>
-            <div class="controladores">
-                <input type="number" id="tempo" placeholder="Tempo (em segundos)" min="1" value="60">
-                <div class='controles'>
-                    <button id="playBtn">Play</button>
-                    <button id="stopBtn">Stop</button>
+                <div id="sequencias-salvas">
                 </div>
             </div>
         </div>
+        <div class="controladores">
+            <input type="number" id="tempo" placeholder="Tempo (em segundos)" min="1" value="60">
+            <div class='controles'>
+                <button id="playBtn">Play</button>
+                <button id="stopBtn">Stop</button>
+            </div>
+        </div>
         <div class="container">
+            
             <!-- As notas ativas serão mostradas aqui -->
         </div>
     </section>
