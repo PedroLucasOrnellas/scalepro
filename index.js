@@ -4,6 +4,8 @@ const stopBtn = document.getElementById('stopBtn');
 const tempoInput = document.getElementById('tempo');
 const container = document.querySelector('.container');
 const notasGrid = document.getElementById('notas-grid');
+const menuEsquerdo = document.querySelector('.lateral-esquerda');
+const menuDireito = document.querySelector('.lateral-direita');
 
 let isPlaying = false;
 
@@ -135,7 +137,9 @@ function estilizaNotasSelecionadas(){
     });
 }
 
-
+function handleMenu(elemento){
+    elemento.classList.toggle('aberto');
+}
 
 // Atualiza a interface de notas selecionadas ao mudar a seleção
 notasGrid.addEventListener('change', ()=>{
