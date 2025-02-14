@@ -37,7 +37,11 @@ body{
     padding: 30px;
     border-radius: 10px;
 }
-
+.controles{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
 
 h3{
     font-family: system-ui;

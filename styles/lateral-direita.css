@@ -68,3 +68,14 @@
     justify-content: center;
     border-radius: 2px;
 }
+
+@media (max-width: 640px) {
+    #abrir-sequencias{
+        position: fixed;
+        justify-content: center;
+        right: 0;
+        bottom: 0;
+        width: 49%;
+        margin: 0;
+    }
+}

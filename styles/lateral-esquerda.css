@@ -76,3 +76,14 @@
 #notas-grid label input{
     display: none; 
 }
+
+@media (max-width: 640px) {
+    #abrir-notas{
+        position: fixed;
+        justify-content: center;
+        left: 0;
+        bottom: 0;
+        width: 49%;
+        margin: 0;
+    }
+}
