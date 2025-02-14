@@ -9,7 +9,7 @@ function getSequenciasSalvas(){
 
 function salvaSequencias(){
     const notasSelecionadas = obterNotasSelecionadas();
-    const sequenciasSalvas = getSequenciasSalvas();
+    let sequenciasSalvas = getSequenciasSalvas();
 
     if(!sequenciasSalvas){
         sequenciasSalvas = JSON.parse(localStorage.getItem('sequenciasSalvas')) || [];
