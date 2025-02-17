@@ -10,10 +10,15 @@ const menuDireito = document.querySelector('.lateral-direita');
 let isPlaying = false;
 
 // Array com todas as notas musicais
+// const notasArray = [
+//     'C', 'C#', 'Db', 'D', 'D#', 'Eb', 'E', 'Fb', 'F', 'F#', 'Gb', 'G', 
+//     'G#', 'Ab', 'A', 'A#', 'Bb', 'B', 'Cb'
+// ];
 const notasArray = [
-    'C', 'C#', 'Db', 'D', 'D#', 'Eb', 'E', 'Fb', 'F', 'F#', 'Gb', 'G', 
-    'G#', 'Ab', 'A', 'A#', 'Bb', 'B', 'Cb'
+    'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 
+    'G#', 'A', 'A#', 'B', 'Cb'
 ];
+
 
 // Função para criar dinamicamente as notas como checkboxes
 function criarNotasCheckbox() {
@@ -71,6 +76,10 @@ function percorrerNotas(tempo) {
         // Marca a nota atual
         const notaDiv = document.querySelector(`.nota[data-name="${notasSelecionadas[index]}"]`);
         if (notaDiv) notaDiv.classList.add('active');
+        const notaSymbol = notaDiv.getAttribute('data-name').toLowerCase();
+        console.log(notaSymbol)
+        new Audio(`/notes/${notaSymbol}.wav`).play()
+        console.log(`/notes/${notaSymbol}.wav`)
 
         // Avança para a próxima nota
         index++;
