@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estender Áudio com JS em Milissegundos</title>
+</head>
+<body>
+
+<audio id="audio" src="notes/1.wav" preload="auto"></audio>
+<button id="playButton">Reproduzir Áudio Estendido</button>
+
+<script>
+    const audioElement = document.getElementById('audio');
+    let audioContext;
+    let isPlaying = false;
+
+    // Função para cortar e estender o áudio (em milissegundos)
+    function cortarEEstenderAudio(inicioMs, fimMs, duracaoTotalMs) {
+        // Converter milissegundos para segundos
+        const inicio = inicioMs / 1000;
+        const fim = fimMs / 1000;
+        const duracaoTotal = duracaoTotalMs / 1000; // Duração total em segundos
+
+        // Carregar o áudio
+        fetch(audioElement.src)
+            .then(response => response.arrayBuffer())
+            .then(buffer => audioContext.decodeAudioData(buffer))
+            .then(decodedData => {
+                // Calcular o número de vezes que o trecho precisa ser repetido para alcançar a duração total
+                const trechoDuracao = fim - inicio;
+                const numRepeticoes = Math.floor(duracaoTotal / trechoDuracao);
+                
+                // Reproduzir o trecho cortado várias vezes até alcançar a duração total
+                let startTime = audioContext.currentTime;
+                for (let i = 0; i < numRepeticoes; i++) {
+                    // Criar um novo AudioBufferSourceNode para cada repetição
+                    const audioSourceNode = audioContext.createBufferSource();
+                    audioSourceNode.buffer = decodedData;
+
+                    // Criar um Gain Node para controle de volume (caso precise)
+                    const gainNode = audioContext.createGain();
+                    audioSourceNode.connect(gainNode);
+                    gainNode.connect(audioContext.destination);
+
+                    // Reproduzir o trecho cortado
+                    audioSourceNode.start(startTime + (i * trechoDuracao), inicio, trechoDuracao);
+                }
+            })
+            .catch(error => console.error('Erro ao carregar o áudio:', error));
+    }
+
+    // Função para iniciar a reprodução
+    function iniciarReproducao(inicioMs, fimMs, duracaoTotalMs) {
+        if (!audioContext) {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        }
+
+        if (!isPlaying) {
+            isPlaying = true;
+            cortarEEstenderAudio(inicioMs, fimMs, duracaoTotalMs);
+        }
+    }
+
+    // Função para parar a reprodução
+    function pararReproducao() {
+        isPlaying = false;
+    }
+
+    // Ativar o AudioContext após uma interação do usuário
+    document.getElementById('playButton').addEventListener('click', function() {
+        // Exemplo de uso: Cortar o áudio entre 0 ms e 300 ms e estendê-lo por 5 segundos
+        iniciarReproducao(0, 300, 5000); // O áudio cortado será repetido até alcançar 5000 milissegundos (5 segundos)
+    });
+</script>
+
+</body>
+</html>
