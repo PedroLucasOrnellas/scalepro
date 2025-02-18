@@ -76,10 +76,8 @@ function percorrerNotas(tempo) {
         // Marca a nota atual
         const notaDiv = document.querySelector(`.nota[data-name="${notasSelecionadas[index]}"]`);
         if (notaDiv) notaDiv.classList.add('active');
-        const notaSymbol = notaDiv.getAttribute('data-name').toLowerCase();
-        console.log(notaSymbol)
-        new Audio(`/notes/${notaSymbol}.wav`).play()
-        console.log(`/notes/${notaSymbol}.wav`)
+
+        reproduzirNotas(notaDiv);
 
         // Avança para a próxima nota
         index++;
@@ -88,7 +86,7 @@ function percorrerNotas(tempo) {
         if (index >= notasSelecionadas.length) {
             index = 0;
         }
-    }, intervalo);
+    }, intervalo * 4);
 
     isPlaying = true;
 }
@@ -102,20 +100,22 @@ playBtn.addEventListener('click', () => {
         alert('Por favor, insira um tempo válido (em segundos).');
         return;
     }
-    if (isPlaying) return;
+    if (isPlaying) stopMusic();
 
     // Inicia a animação
     percorrerNotas(tempo);
 });
 
 // Função que será chamada quando o botão Stop for clicado
-stopBtn.addEventListener('click', () => {
+stopBtn.addEventListener('click', stopMusic);
+
+function stopMusic(){
     clearInterval(intervaloId); // Para o intervalo e a animação
     // Limpa a classe 'active' de todas as notas
     const notas = document.querySelectorAll('.nota');
     notas.forEach(nota => nota.classList.remove('active'));
     isPlaying = false;
-});
+}
 
 // Função para criar as notas visíveis na tela
 function criarNotas(notas) {
