@@ -90,7 +90,8 @@ function percorrerNotas(tempo) {
 
         // Reproduz som
         reproduzirNotas(notaDiv);
-
+        setTimeout(()=>reproduzirNotas(notaDiv), intervalo / 2)
+        console.log(intervalo)
         // Avança para a próxima nota
         index++;
 
