@@ -61,13 +61,24 @@ function percorrerNotas(tempo) {
         return;
     }
 
-    const intervalo = (60 / tempo) * 1000; // Transforma o tempo em bpm
+    const intervalo = ((60 / tempo) * 1000 * 4); // Transforma o tempo em bpm
     let index = 0; // Índice da nota que está sendo ativada
 
     // Limpa a classe 'active' de todas as notas antes de começar
     const notas = document.querySelectorAll('.nota');
     notas.forEach(nota => nota.classList.remove('active'));
 
+    // Marca e toca a primeira nota imediatamente
+    const primeiraNotaDiv = document.querySelector(`.nota[data-name="${notasSelecionadas[index]}"]`);
+    if (primeiraNotaDiv) {
+        primeiraNotaDiv.classList.add('active');
+        reproduzirNotas(primeiraNotaDiv);
+    }
+
+    // Avança para a próxima nota
+    index++;
+
+    // Inicia o setInterval para as notas seguintes
     intervaloId = setInterval(() => {
         // Limpa a classe 'active' de todas as notas antes de marcar a próxima
         const notas = document.querySelectorAll('.nota');
@@ -77,6 +88,7 @@ function percorrerNotas(tempo) {
         const notaDiv = document.querySelector(`.nota[data-name="${notasSelecionadas[index]}"]`);
         if (notaDiv) notaDiv.classList.add('active');
 
+        // Reproduz som
         reproduzirNotas(notaDiv);
 
         // Avança para a próxima nota
@@ -86,10 +98,11 @@ function percorrerNotas(tempo) {
         if (index >= notasSelecionadas.length) {
             index = 0;
         }
-    }, intervalo * 4);
+    }, intervalo);
 
     isPlaying = true;
 }
+
 
 // Função que será chamada quando o botão Play for clicado
 playBtn.addEventListener('click', () => {
