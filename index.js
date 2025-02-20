@@ -60,6 +60,7 @@ function percorrerNotas(tempo) {
         alert('Por favor, selecione algumas notas!');
         return;
     }
+    reproduzirMetronomo(tempo);
 
     const intervalo = ((60 / tempo) * 1000 * 4); // Transforma o tempo em bpm
     let index = 0; // Índice da nota que está sendo ativada
@@ -90,7 +91,7 @@ function percorrerNotas(tempo) {
 
         // Reproduz som
         reproduzirNotas(notaDiv);
-        setTimeout(()=>reproduzirNotas(notaDiv), intervalo / 2)
+        // setTimeout(()=>reproduzirNotas(notaDiv), intervalo / 2)
         console.log(intervalo)
         // Avança para a próxima nota
         index++;
@@ -115,7 +116,7 @@ playBtn.addEventListener('click', () => {
         return;
     }
     if (isPlaying) stopMusic();
-
+    
     // Inicia a animação
     percorrerNotas(tempo);
 });
@@ -124,6 +125,7 @@ playBtn.addEventListener('click', () => {
 stopBtn.addEventListener('click', stopMusic);
 
 function stopMusic(){
+    pararMetronomo();
     clearInterval(intervaloId); // Para o intervalo e a animação
     // Limpa a classe 'active' de todas as notas
     const notas = document.querySelectorAll('.nota');
