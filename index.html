@@ -7,12 +7,14 @@
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="styles/lateral-direita.css">
     <link rel="stylesheet" href="styles/lateral-esquerda.css">
+    <link rel="stylesheet" href="styles/metronomo.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
 </head>
 <body>
     <section class="principal">
         <div class="topo">
             <div class="lateral-esquerda">
-                <h3 id="abrir-notas">notas</h3>
+                <h3 class="button" id="abrir-notas">notas</h3>
                 <div id="nota-selector">
                     <div>
                         <div id="notas-grid">
@@ -24,7 +26,7 @@
                 </div>
             </div>
             <div class="lateral-direita">
-                <h3 id="abrir-sequencias">sequencias</h3>
+                <h3 class="button" id="abrir-sequencias">sequencias</h3>
                 <div id="sequencias-salvas">
                 </div>
             </div>
@@ -36,11 +38,29 @@
                 <button id="stopBtn">Stop</button>
             </div>
         </div>
+        
+        
+    </section>
+    <section class="notasRender">
         <div class="container">
             
             <!-- As notas ativas serão mostradas aqui -->
         </div>
     </section>
+
+    <div id='modal_metronomo' class="controladores metronomo">
+        <!-- <h3>Metrônomo</h3> -->
+       <div>
+           <input type="number" id="bpm" placeholder="BPM" min="1" value="60">
+            <div class='controles'>
+                <button id="playMetronomo">Play</button>
+                <button id="stopMetronomo">Stop </button>
+            </div>
+       </div>
+    </div>
+    <div class="button" id="btn-metronomo">
+        <img src="src/icons/metronomo.png" alt="">
+    </div>
 
     <script src="index.js"></script>
     <script src="scripts/notasSalvas.js"></script>

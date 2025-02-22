@@ -12,7 +12,6 @@ function reproduzirNotas(nota) {
     }
 
     // Criar uma nova instância de áudio e reproduzi-la
-    audioInstance = new Audio(`/notes/${notaSymbol}.wav`);
+    audioInstance = new Audio(`/src/notes/${notaSymbol}.wav`);
     audioInstance.play();
-    console.log(`/notes/${notaSymbol}.wav`);
 }
