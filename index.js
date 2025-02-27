@@ -35,7 +35,7 @@ function criarNotasCheckbox() {
 
         label.appendChild(checkbox);
         label.appendChild(text);
-        notasGrid.insertBefore(label, salvarPadrao);
+        notasGrid.append(label);
     });
 }
 
@@ -91,8 +91,7 @@ function percorrerNotas(tempo) {
 
         // Reproduz som
         reproduzirNotas(notaDiv);
-        // setTimeout(()=>reproduzirNotas(notaDiv), intervalo / 2)
-        console.log(intervalo)
+        
         // Avança para a próxima nota
         index++;
 
