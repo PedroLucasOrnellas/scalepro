@@ -14,7 +14,7 @@ function reproduzirMetronomo(bpm) {
     let count = 0; // Contador para saber quando é o tempo forte
 
     // Definir o som do metrônomo
-    const somMetronomo = new Audio(`${path}notes/29.wav`); // Defina o caminho correto do arquivo de áudio
+    const somMetronomo = new Audio(`${path}/src/metronome/metronome.mp3`); // Defina o caminho correto do arquivo de áudio
     metronomoAudioInstance = somMetronomo; // Inicializa a variável do áudio
 
     // Função que toca o som
@@ -26,7 +26,7 @@ function reproduzirMetronomo(bpm) {
 
         // Se for o primeiro tempo ou múltiplos de 4, toque um som diferente (tempo forte)
         if (count === 0 || count % 4 === 0) {
-            const somForte = new Audio(`${path}/notes/36.wav`); // Som diferente para tempo forte
+            const somForte = new Audio(`${path}/src/metronome/metronome.mp3`); // Som diferente para tempo forte
             somForte.play();
         } else {
             metronomoAudioInstance.play();
