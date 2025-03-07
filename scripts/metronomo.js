@@ -26,8 +26,9 @@ function reproduzirMetronomo(bpm) {
 
         // Se for o primeiro tempo ou múltiplos de 4, toque um som diferente (tempo forte)
         if (count === 0 || count % 4 === 0) {
-            const somForte = new Audio(`${path}/src/metronome/metronome.mp3`); // Som diferente para tempo forte
-            somForte.play();
+            // const somForte = new Audio(`${path}/src/metronome/metronome.mp3`); // Som diferente para tempo forte
+            // somForte.play();
+            console.log("conta nada");
         } else {
             metronomoAudioInstance.play();
         }
