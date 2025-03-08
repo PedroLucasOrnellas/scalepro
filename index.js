@@ -73,7 +73,7 @@ function percorrerNotas(tempo) {
     const primeiraNotaDiv = document.querySelector(`.nota[data-name="${notasSelecionadas[index]}"]`);
     if (primeiraNotaDiv) {
         primeiraNotaDiv.classList.add('active');
-        reproduzirNotas(primeiraNotaDiv);
+        // reproduzirNotas(primeiraNotaDiv);
     }
 
     // Avança para a próxima nota
@@ -89,8 +89,8 @@ function percorrerNotas(tempo) {
         const notaDiv = document.querySelector(`.nota[data-name="${notasSelecionadas[index]}"]`);
         if (notaDiv) notaDiv.classList.add('active');
 
-        // Reproduz som
-        reproduzirNotas(notaDiv);
+        // // Reproduz som
+        // reproduzirNotas(notaDiv);
         
         // Avança para a próxima nota
         index++;

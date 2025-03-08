@@ -8,6 +8,7 @@ const bpm = document.getElementById('bpm');
 let metronomoAudioInstance = null;
 let metronomoIsPlaying = false;
 let cronometroIntervaloId = null;
+let indexMusica = 0;
 
 function reproduzirMetronomo(bpm) {
     const intervalo = (60 / bpm) * 1000; // Intervalo entre batidas em milissegundos
@@ -28,6 +29,10 @@ function reproduzirMetronomo(bpm) {
         if (count === 0 || count % 4 === 0) {
             // const somForte = new Audio(`${path}/src/metronome/metronome.mp3`); // Som diferente para tempo forte
             // somForte.play();
+            if(indexMusica >= obterNotasSelecionadas().length)
+                indexMusica = 0;
+            reproduzirNotas(document.querySelector(`.nota[data-name="${obterNotasSelecionadas()[indexMusica]}"]`));
+            indexMusica++;
             console.log("conta nada");
         } else {
             metronomoAudioInstance.play();
