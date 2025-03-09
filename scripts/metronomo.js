@@ -29,11 +29,13 @@ function reproduzirMetronomo(bpm) {
         if (count === 0 || count % 4 === 0) {
             // const somForte = new Audio(`${path}/src/metronome/metronome.mp3`); // Som diferente para tempo forte
             // somForte.play();
+
             if(indexMusica >= obterNotasSelecionadas().length)
                 indexMusica = 0;
+
             reproduzirNotas(document.querySelector(`.nota[data-name="${obterNotasSelecionadas()[indexMusica]}"]`));
             indexMusica++;
-            console.log("conta nada");
+
         } else {
             metronomoAudioInstance.play();
         }

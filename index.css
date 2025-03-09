@@ -112,3 +112,20 @@ input {
 .button{
     user-select: none;
 }
+
+@media (max-width: 640px) {
+    .controladores{
+        width: 100%;
+
+    }
+    .controladores input{
+        width: 40%;
+    }
+    .controladores .controles{
+        flex: 1;
+        gap: 10px;
+    }
+    .controladores .controles button{
+        width: 46%;
+    }
+}

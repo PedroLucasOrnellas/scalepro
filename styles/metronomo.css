@@ -47,3 +47,17 @@
 #btn-metronomo img{
     filter: invert(.8);
 }
+
+@media (max-width: 640px){
+    #btn-metronomo{
+        bottom: 60px;
+        right: 20px;
+    }
+
+    .controladores.metronomo{
+        bottom: 55px;
+        left: 20px;
+        right: 20px;
+        width: calc(100% - 40px);
+    }
+}
