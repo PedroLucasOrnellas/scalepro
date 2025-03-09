@@ -59,7 +59,7 @@ function pararMetronomo() {
         metronomoAudioInstance.pause(); // Pause o áudio atual se necessário
         metronomoAudioInstance.currentTime = 0; // Reset o tempo
     }
-    console.log("Metrônomo parado.");
+    indexMusica = 0;
 }
 
 play_metronomo.addEventListener('click', () => {
