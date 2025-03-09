@@ -53,7 +53,7 @@ function carregaSequenciaEscolhida(seqClicada){
     const sequenciasSalvas = getSequenciasSalvas();
     const sequenciaEscolhida = sequenciasSalvas[idSequencia];
 
-    handleMenu(menuDireito);
+    toggleMenu(menuDireito);
     criarNotas(sequenciaEscolhida);
     selecionarNotas(sequenciaEscolhida);
 }
@@ -89,5 +89,6 @@ sequenciasSalvasDiv.addEventListener('click', ({target}) => {
 })
 
 abrirSequenciasSalvas.addEventListener('click', () => {
-    handleMenu(menuDireito);
+    toggleMenu(menuDireito);
+    closeMenu(menuEsquerdo);
 })

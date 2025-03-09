@@ -161,8 +161,11 @@ function estilizaNotasSelecionadas(){
     });
 }
 
-function handleMenu(elemento){
+function toggleMenu(elemento){
     elemento.classList.toggle('aberto');
+}
+function closeMenu(elemento){
+    elemento.classList.remove('aberto');
 }
 
 // Atualiza a interface de notas selecionadas ao mudar a seleção

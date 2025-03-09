@@ -3,7 +3,7 @@ const limparNotas = document.getElementById('limpar-notas');
 
 salvarPadrao.addEventListener('click', () => {
     salvaSequencias();
-    handleMenu(menuEsquerdo);
+    toggleMenu(menuEsquerdo);
 })
 
 limparNotas.addEventListener("click", () => {
@@ -12,5 +12,6 @@ limparNotas.addEventListener("click", () => {
 })
 
 abrirNotas.addEventListener('click', () => {
-    handleMenu(menuEsquerdo);
+    toggleMenu(menuEsquerdo);
+    closeMenu(menuDireito);
 })
