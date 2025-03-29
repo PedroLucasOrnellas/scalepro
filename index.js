@@ -111,13 +111,30 @@ playBtn.addEventListener('click', () => {
 
     // Se o tempo não for válido ou não for um número positivo
     if (isNaN(tempo) || tempo <= 0) {
-        alert('Por favor, insira um tempo válido (em segundos).');
+        alert('Por favor, insira um tempo válido (em bpm).');
         return;
     }
     if (isPlaying) stopMusic();
     
     // Inicia a animação
     percorrerNotas(tempo);
+});
+
+// Para o evento 'keydown', você pode adicionar outro listener
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') { // Verificando se a tecla pressionada é Enter
+        const tempo = parseInt(tempoInput.value);
+
+        // Se o tempo não for válido ou não for um número positivo
+        if (isNaN(tempo) || tempo <= 0) {
+            alert('Por favor, insira um tempo válido (em bpm).');
+            return;
+        }
+        if (isPlaying) stopMusic();
+
+        // Inicia a animação
+        percorrerNotas(tempo);
+    }
 });
 
 // Função que será chamada quando o botão Stop for clicado

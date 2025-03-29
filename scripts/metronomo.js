@@ -76,9 +76,9 @@ function toggleModalMetronomo() {
     btn_metronomo.classList.toggle('aberto');
 }
 
-btn_metronomo.addEventListener('click', () => {
-    toggleModalMetronomo();
-})
+// btn_metronomo.addEventListener('click', () => {
+//     toggleModalMetronomo();
+// })
 
 // reproduzirMetronomo(120); // Começar o metrônomo a 120 BPM
 // Para parar, você pode chamar a função pararMetronomo().
