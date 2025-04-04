@@ -16,10 +16,20 @@ function preCarregarAudios() {
 window.addEventListener('load', preCarregarAudios);
 
 function reproduzirNotas(nota) {
-    // Obter o nome da nota a partir do atributo data-name
-    const notaSymbol = nota.getAttribute('data-name').toLowerCase().replace('#', 'Sus');
-    console.log(notaSymbol);
+    let indexarray;
+    const symbolValue = nota.getAttribute('data-name');
+
+    if(symbolValue  .includes('b')) {
+        indexarray = notasArray.indexOf(symbolValue) !== -1 ? notasArray.indexOf(symbolValue) - 1 : 'not-found';
+    }
     
+    // Obter o nome da nota a partir do atributo data-name
+    let notaSymbol = nota.getAttribute('data-name').toLowerCase().replace('#', 'Sus');
+    if(indexarray)
+        notaSymbol = notasArray[indexarray].toLowerCase().replace('#', 'Sus');
+    
+    console.log(notaSymbol);
+
     // Verificar se há uma instância de áudio em execução e parar se necessário
     if (audioInstance && !audioInstance.paused) {
         audioInstance.pause(); // Pausar a reprodução anterior

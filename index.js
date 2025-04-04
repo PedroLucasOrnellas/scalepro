@@ -15,8 +15,8 @@ let isPlaying = false;
 //     'G#', 'Ab', 'A', 'A#', 'Bb', 'B', 'Cb'
 // ];
 const notasArray = [
-    'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 
-    'G#', 'A', 'A#', 'B', 'Cb'
+    'C', 'C#', 'Db','D', 'D#','Eb','E','Fb','F','F#','Gb','G', 
+    'G#','Ab','A', 'A#', 'Bb', 'B'
 ];
 
 
