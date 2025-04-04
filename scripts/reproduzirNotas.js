@@ -6,9 +6,14 @@ const audioCache = {};
 function preCarregarAudios() {
 
     notasArray.forEach(nota => {
-        const notaSymbol = nota.toLowerCase().replace('#', 'Sus');
-        const audio = new Audio(`${path}src/notes/${notaSymbol}.wav`);
-        audioCache[notaSymbol] = audio;
+        let notaSymbol = nota;
+        if(!notaSymbol.includes('b')) {
+            notaSymbol = notaSymbol.toLowerCase().replace('#', 'Sus');
+            const audio = new Audio(`${path}src/notes/${notaSymbol}.wav`);
+            audio.preload = "auto";// Garantir que o áudio será pré-carregado
+            audio.load();  
+            audioCache[notaSymbol] = audio;
+        }
     });
 }
 
@@ -36,8 +41,17 @@ function reproduzirNotas(nota) {
         audioInstance.currentTime = 0; // Resetar o tempo de reprodução
     }
 
+    // Verificar se o áudio já foi carregado no cache e reproduzi-lo
+    if (audioCache[notaSymbol]) {
+        audioInstance = audioCache[notaSymbol]; // Usar o áudio carregado do cache
+        audioInstance.play();
+        console.log(`${path}/notes/${notaSymbol}.wav`);
+    } else {
+        console.warn(`Áudio não encontrado para a nota: ${notaSymbol}`);
+    }
+
     // Criar uma nova instância de áudio e reproduzi-la
-    audioInstance = new Audio(`${path}src/notes/${notaSymbol}.wav`);
-    audioInstance.play();
-    console.log(`${path}/notes/${notaSymbol}.wav`);
+    // audioInstance = new Audio(`${path}src/notes/${notaSymbol}.wav`);
+    // audioInstance.play();
+    // console.log(`${path}/notes/${notaSymbol}.wav`);
 }
