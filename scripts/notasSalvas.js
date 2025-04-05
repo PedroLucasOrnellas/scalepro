@@ -89,6 +89,10 @@ sequenciasSalvasDiv.addEventListener('click', ({target}) => {
 })
 
 abrirSequenciasSalvas.addEventListener('click', () => {
+    abrirMenuDireito();
+})
+
+function abrirMenuDireito(){
     toggleMenu(menuDireito);
     closeMenu(menuEsquerdo);
-})
+}

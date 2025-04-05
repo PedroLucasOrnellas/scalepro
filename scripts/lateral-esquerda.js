@@ -12,6 +12,12 @@ limparNotas.addEventListener("click", () => {
 })
 
 abrirNotas.addEventListener('click', () => {
+    abrirMenuEsquerdo();
+})
+
+function abrirMenuEsquerdo() {
     toggleMenu(menuEsquerdo);
     closeMenu(menuDireito);
-})
+}
+
+document.addEventListener('tou')
