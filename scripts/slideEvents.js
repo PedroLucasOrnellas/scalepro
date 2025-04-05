@@ -1,7 +1,7 @@
 let touchStartX = 0;
 let touchEndX = 0;
 
-const swipeThreshold = 150; // Distância mínima para considerar como swipe
+const swipeThreshold = 110; // Distância mínima para considerar como swipe
 
 function handleTouchStart(event) {
   touchStartX = event.touches[0].clientX; // Captura a posição inicial do toque
