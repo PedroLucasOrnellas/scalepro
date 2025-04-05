@@ -19,5 +19,3 @@ function abrirMenuEsquerdo() {
     toggleMenu(menuEsquerdo);
     closeMenu(menuDireito);
 }
-
-document.addEventListener('tou')
