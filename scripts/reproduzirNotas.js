@@ -2,12 +2,12 @@ const audios = document.querySelectorAll('.audios audio');
 const audiosArray = Array.from(audios).map(audio => audio.getAttribute('id'));
 let audioInstance = null;
 
-// audios.forEach(audio => {
-//     audio.play(); // Força o carregamento
-//     // audio.addEventListener('canplaythrough', () => {
-//     //     console.log(`Áudio ${audio.id} carregado`);
-//     // });
-// });
+document.addEventListener('click', () => {
+    audios.forEach(audio => {
+        audio.load(); // força o carregamento
+    });
+    console.log('audios carregados');
+}, { once: true });
 
 function reproduzirNotas(notaElement) {
     let indexAudios;
@@ -30,7 +30,9 @@ function reproduzirNotas(notaElement) {
     // Toca o novo áudio e armazena a instância atual
     audioInstance = document.querySelector(`audio[id="${nota}"]`);
     if (audioInstance) {
-        audioInstance.play();
+        audioInstance.play().catch(error => {
+            alert("Erro ao tentar tocar áudio:", error);
+        });
     }
 
     console.log(nota);
