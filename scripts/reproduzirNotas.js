@@ -2,6 +2,13 @@ const audios = document.querySelectorAll('.audios audio');
 const audiosArray = Array.from(audios).map(audio => audio.getAttribute('id'));
 let audioInstance = null;
 
+// audios.forEach(audio => {
+//     audio.play(); // Força o carregamento
+//     // audio.addEventListener('canplaythrough', () => {
+//     //     console.log(`Áudio ${audio.id} carregado`);
+//     // });
+// });
+
 function reproduzirNotas(notaElement) {
     let indexAudios;
 
