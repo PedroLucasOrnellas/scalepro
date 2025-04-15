@@ -2,6 +2,27 @@ const audios = document.querySelectorAll('.audios audio');
 const audiosArray = Array.from(audios).map(audio => audio.getAttribute('id'));
 let audioInstance = null;
 
+const audioBuffers = {};
+let audioContextInitialized = false;
+
+async function carregarBuffersDeNotas() {
+    if (!audioContextInitialized) {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        audioContextInitialized = true;
+    }
+
+    const promises = audiosArray.map(async id => {
+        const url = document.querySelector(`audio[id="${id}"]`).src;
+        const response = await fetch(url);
+        const arrayBuffer = await response.arrayBuffer();
+        const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+        audioBuffers[id] = audioBuffer;
+    });
+
+    await Promise.all(promises);
+    console.log('Buffers carregados');
+}
+
 document.addEventListener('click', () => {
     audios.forEach(audio => {
         audio.load(); // força o carregamento
@@ -9,31 +30,49 @@ document.addEventListener('click', () => {
     console.log('audios carregados');
 }, { once: true });
 
-function reproduzirNotas(notaElement) {
-    let indexAudios;
+let currentNoteSource = null; // fonte de áudio atual
 
-    // Obtém o nome da nota do elemento
-    let nota = notaElement.getAttribute('data-name').replace('b', 'ant').toLowerCase().replace('#', 'Sus');
+function reproduzirNotas(notaElement, time) {
+    let nota = notaElement.getAttribute('data-name')
+        .replace('b', 'ant')
+        .toLowerCase()
+        .replace('#', 'Sus');
 
-    if(nota.includes('ant')) {
+    if (nota.includes('ant')) {
         let notaX = nota.toUpperCase().replace('ANT', 'b');
-        indexAudios = notasArray.indexOf(notaX) !== -1 ? notasArray.indexOf(notaX) - 1 : 'not-found';
-        nota = notasArray[indexAudios].toLowerCase().replace('#', 'Sus');
+        let indexAudios = notasArray.indexOf(notaX) !== -1 ? notasArray.indexOf(notaX) - 1 : -1;
+        if (indexAudios !== -1) {
+            nota = notasArray[indexAudios].toLowerCase().replace('#', 'Sus');
+        } else {
+            console.warn('Nota não encontrada:', notaX);
+            return;
+        }
     }
 
-    // Para o áudio anterior se houver
-    if (audioInstance) {
-        audioInstance.pause();
-        audioInstance.currentTime = 0;
-    }
+    const buffer = audioBuffers[nota];
+    if (buffer) {
+        // Para o som anterior, se estiver tocando
+        if (currentNoteSource) {
+            try {
+                currentNoteSource.stop(); // força parar
+            } catch (e) {
+                console.warn("Erro ao parar nota anterior:", e);
+            }
+            currentNoteSource.disconnect();
+        }
 
-    // Toca o novo áudio e armazena a instância atual
-    audioInstance = document.querySelector(`audio[id="${nota}"]`);
-    if (audioInstance) {
-        audioInstance.play().catch(error => {
-            alert("Erro ao tentar tocar áudio:", error);
-        });
-    }
+        // Cria nova instância e toca a nota atual
+        const source = audioContext.createBufferSource();
+        source.buffer = buffer;
+        source.connect(audioContext.destination);
+        source.start(time);
 
-    console.log(nota);
+        currentNoteSource = source;
+    } else {
+        console.warn('Buffer não encontrado para a nota:', nota);
+    }
 }
+
+document.addEventListener('DOMContentLoaded', async () => {
+    await carregarBuffersDeNotas();
+});

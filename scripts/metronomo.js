@@ -44,7 +44,7 @@ function scheduler() {
 
             const nota = document.querySelector(`.nota[data-name="${obterNotasSelecionadas()[indexMusica]}"]`);
             if (nota) {
-                reproduzirNotas(nota);
+                reproduzirNotas(nota, nextNoteTime);
                 tocarClick(nextNoteTime); 
             }
 
