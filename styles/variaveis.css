@@ -1,0 +1,24 @@
+:root {
+    /* 🎵 Tema Escuro Musical Sofisticado */
+  
+    /* Fundo e textos */
+    --color-bg: #0D1117;
+    --color-bg-secondary: #161B22;
+    --color-bg-third: #0B0F14;
+    --color-text-primary: #C9D1D9;
+    --color-text-secondary: #8B949E;
+  
+    /* Botões e ações */
+    --color-primary: #58A6FF;        /* Cor do botão normal */
+    --color-primary-hover: #388bfd;  /* Ou use #79C0FF se quiser um efeito mais claro */
+    --color-primary-active: #1F6FEB;
+  
+    /* Feedback visual */
+    --color-success: #238636;
+    --color-error: #F85149;
+    --color-highlight: #D2A8FF;
+  
+    /* Bordas, outlines, etc. */
+    --color-border: #30363D;
+  }
+  
