@@ -180,8 +180,8 @@ function estilizaNotasSelecionadas(){
     });
 }
 
-function toggleMenu(elemento){
-    elemento.classList.toggle('aberto');
+function openMenu(elemento){
+    elemento.classList.add('aberto');
 }
 function closeMenu(elemento){
     elemento.classList.remove('aberto');

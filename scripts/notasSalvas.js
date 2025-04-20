@@ -53,7 +53,7 @@ function carregaSequenciaEscolhida(seqClicada){
     const sequenciasSalvas = getSequenciasSalvas();
     const sequenciaEscolhida = sequenciasSalvas[idSequencia];
 
-    toggleMenu(menuDireito);
+    openMenu(menuDireito);
     criarNotas(sequenciaEscolhida);
     selecionarNotas(sequenciaEscolhida);
 }
@@ -93,7 +93,12 @@ abrirSequenciasSalvas.addEventListener('click', () => {
 })
 
 function abrirMenuDireito(){
-    mdOpen = true;
-    toggleMenu(menuDireito);
-    closeMenu(menuEsquerdo);
+    if (mdOpen){
+        closeMenu(menuDireito);
+        mdOpen = false;
+    }else{
+        mdOpen = true;
+        openMenu(menuDireito);
+        closeMenu(menuEsquerdo);
+    }
 }
