@@ -18,10 +18,14 @@ abrirNotas.addEventListener('click', () => {
 function abrirMenuEsquerdo() {
     if (meOpen){
         closeMenu(menuEsquerdo);
-        meOpen = false;
     }else{
         meOpen = true;
         openMenu(menuEsquerdo);
         closeMenu(menuDireito);
+
+        //adiciona o fundo para fechar o menu se clicar fora dele
+        addFundoElemento(menuEsquerdo, () => {
+            closeMenu(menuEsquerdo);
+        });
     }
 }

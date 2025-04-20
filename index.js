@@ -193,6 +193,19 @@ function closeMenu(elemento){
     
 }
 
+function addFundoElemento(elemento, callback) {
+    function handleClickFora(event) {
+        if (!elemento.contains(event.target)) {
+            callback(); // Executa a função passada
+            document.removeEventListener('click', handleClickFora); // Remove o listener após o clique
+        }
+    }
+
+    setTimeout(() => {
+        document.addEventListener('click', handleClickFora);
+    });
+}
+
 // Atualiza a interface de notas selecionadas ao mudar a seleção
 notasGrid.addEventListener('change', ()=>{
     criarNotas();

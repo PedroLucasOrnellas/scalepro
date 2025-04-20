@@ -95,10 +95,14 @@ abrirSequenciasSalvas.addEventListener('click', () => {
 function abrirMenuDireito(){
     if (mdOpen){
         closeMenu(menuDireito);
-        mdOpen = false;
     }else{
         mdOpen = true;
         openMenu(menuDireito);
         closeMenu(menuEsquerdo);
+
+        //adiciona o fundo para fechar o menu se clicar fora dele
+        addFundoElemento(menuDireito, () => {
+            closeMenu(menuDireito);
+        });
     }
 }
