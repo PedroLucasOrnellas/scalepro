@@ -6,6 +6,8 @@ const container = document.querySelector('.container');
 const notasGrid = document.getElementById('notas-grid');
 const menuEsquerdo = document.querySelector('.lateral-esquerda');
 const menuDireito = document.querySelector('.lateral-direita');
+let mdOpen = false;
+let meOpen = false;
 
 let isPlaying = false;
 
@@ -183,6 +185,12 @@ function toggleMenu(elemento){
 }
 function closeMenu(elemento){
     elemento.classList.remove('aberto');
+
+    if(elemento === menuDireito)
+        mdOpen = false;
+    else
+        meOpen = false;
+    
 }
 
 // Atualiza a interface de notas selecionadas ao mudar a seleção

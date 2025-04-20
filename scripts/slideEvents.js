@@ -13,14 +13,22 @@ function handleTouchEnd(event) {
   // Verifica se o movimento foi da esquerda para a direita
   if (touchEndX - touchStartX > swipeThreshold) {
     console.log('Deslizou da esquerda para a direita!', touchEndX - touchStartX);
-    abrirMenuEsquerdo();
+    if(!mdOpen)
+      abrirMenuEsquerdo();
+    else{
+      closeMenu(menuDireito);
+    }
     // Aqui você pode adicionar o que deve acontecer quando detectar o swipe
   }
 
   // Verifica se o movimento foi da direita para a esquerda
   if (touchStartX - touchEndX > swipeThreshold) {
     console.log('Deslizou da direita para a esquerda!', touchEndX - touchStartX);
-    abrirMenuDireito();  // Função para abrir o menu direito
+    if(!meOpen)
+      abrirMenuDireito();
+    else{
+      closeMenu(menuEsquerdo);
+    } // Função para abrir o menu direito
   }
 
 }

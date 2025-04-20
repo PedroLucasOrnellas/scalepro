@@ -16,6 +16,7 @@ abrirNotas.addEventListener('click', () => {
 })
 
 function abrirMenuEsquerdo() {
+    meOpen = true;
     toggleMenu(menuEsquerdo);
     closeMenu(menuDireito);
 }

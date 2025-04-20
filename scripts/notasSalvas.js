@@ -93,6 +93,7 @@ abrirSequenciasSalvas.addEventListener('click', () => {
 })
 
 function abrirMenuDireito(){
+    mdOpen = true;
     toggleMenu(menuDireito);
     closeMenu(menuEsquerdo);
 }
