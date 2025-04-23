@@ -83,16 +83,16 @@ function pararMetronomo() {
     indexMusica = 0;
 }
 
-play_metronomo.addEventListener('click', () => {
-    pararMetronomo();
-    reproduzirMetronomo();
-});
+// play_metronomo.addEventListener('click', () => {
+//     pararMetronomo();
+//     reproduzirMetronomo();
+// });
 
-stop_metronomo.addEventListener('click', () => {
-    pararMetronomo();
-});
+// stop_metronomo.addEventListener('click', () => {
+//     pararMetronomo();
+// });
 
-function toggleModalMetronomo() {
-    modal_metronomo.classList.toggle('aberto');
-    btn_metronomo.classList.toggle('aberto');
-}
+// function toggleModalMetronomo() {
+//     modal_metronomo.classList.toggle('aberto');
+//     btn_metronomo.classList.toggle('aberto');
+// }

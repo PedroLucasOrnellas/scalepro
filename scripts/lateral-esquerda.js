@@ -7,6 +7,7 @@ salvarPadrao.addEventListener('click', () => {
 })
 
 limparNotas.addEventListener("click", () => {
+    stopMusic();
     selecionarNotas([]);
     criarNotas();
 })
