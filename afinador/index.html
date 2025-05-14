@@ -3,8 +3,61 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Afinador de Violão Avançado</title>
+  <title>Afinador de Violão</title>
   <style>
+    .modalAviso {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7); /* fundo escurecido */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background: #1e1e1e; /* fundo do modal escuro */
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      font-family: 'Segoe UI', sans-serif;
+      color: #f0f0f0;
+    }
+
+    .modal-content h2 {
+      margin-top: 0;
+      color: #ff5252; /* vermelho claro de alerta */
+      font-size: 1.8rem;
+    }
+
+    .modal-content p {
+      font-size: 1rem;
+      color: #cccccc;
+      margin: 1rem 0;
+    }
+
+    #closeModal {
+      padding: 0.5rem 1.2rem;
+      background-color: #1f6feb; /* azul vibrante */
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #closeModal:hover {
+      background-color: #265dbe;
+    }
+
+
     body {
         box-sizing: border-box;
         font-family: 'Segoe UI', sans-serif;
@@ -99,6 +152,14 @@
       <div id="freq">---</div>
       <canvas id="needle"></canvas>
       <div id="status" class="status">Aguardando início...</div>
+  </section>
+
+  <section id="modalAviso" class="modalAviso">
+    <div class="modal-content">
+      <h2>Atenção</h2>
+      <p>Para usar o afinador, é necessário permitir o acesso ao microfone pelo navegador.</p>
+      <button id="closeModal">Fechar</button>
+    </div>
   </section>
 
   <script>
@@ -263,6 +324,11 @@
       const shift = a ? -b / (2 * a) : 0;
       return sampleRate / (T0 + shift);
     }
+
+    // configuração modal
+    document.getElementById('closeModal').addEventListener('click', function () {
+      document.getElementById('modalAviso').style.display = 'none';
+    });
   </script>
 </body>
 </html>
