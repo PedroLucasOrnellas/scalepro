@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Afinador de Violão Avançado</title>
+  <style>
+    body {
+        box-sizing: border-box;
+        font-family: 'Segoe UI', sans-serif;
+        background: #0d1117;
+        color: #ffffff;
+        text-align: center;
+        padding: 2rem;
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    h1 {
+      margin-bottom: 2rem;
+      color: #ffffff;
+      font-size: 2.5rem;
+      transition: opacity 0.5s;
+    }
+    #note {
+      font-size: 3rem;
+      margin: 1rem 0;
+      transition: transform 0.3s;
+    }
+    #freq {
+      font-size: 1.2rem;
+      color: #8b949e;
+    }
+    #needle {
+      width: 200px;
+      height: 100px;
+      margin: 2rem auto;
+      background-color: #161b22;
+      border-radius: 8px;
+      transition: transform 0.3s ease-in-out;
+    }
+    .status {
+      font-size: 1.3rem;
+      margin-top: 1rem;
+    }
+    .controls {
+      margin: 1rem 0 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+    button {
+      background-color: #1f6feb;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 0.6rem 1.2rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+    button:hover {
+      background-color: #388bfd;
+      transform: scale(1.1);
+    }
+    button:active {
+      transform: scale(0.9);
+    }
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      #note {
+        font-size: 2.5rem;
+      }
+      #freq {
+        font-size: 1rem;
+      }
+      .controls {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="container">
+      <h1>Afinador de Violão</h1>
+      <div class="controls">
+        <button id="startButton">Iniciar Afinador</button>
+        <button id="stopButton">Parar Afinador</button>
+      </div>
+      <div id="note">---</div>
+      <div id="freq">---</div>
+      <canvas id="needle"></canvas>
+      <div id="status" class="status">Aguardando início...</div>
+  </section>
+
+  <script>
+    const novaUrl = window.location.pathname.replace("afinador/", "afinador");
+    window.history.replaceState(null, "", novaUrl); 
+
+    const notes = {
+      E2: 82.41,
+      A2: 110.00,
+      D3: 146.83,
+      G3: 196.00,
+      B3: 246.94,
+      E4: 329.63
+    };
+
+    let audioContext;
+    let analyser;
+    let source;
+    let animationId;
+    let buffer = new Float32Array(2048);
+    let lastFrequencies = [];
+
+    const canvas = document.getElementById('needle');
+    const ctx = canvas.getContext('2d');
+
+    const noteDisplay = document.getElementById('note');
+    const freqDisplay = document.getElementById('freq');
+    const statusDisplay = document.getElementById('status');
+
+    document.getElementById('startButton').addEventListener('click', async () => {
+      if (!audioContext) {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      source = audioContext.createMediaStreamSource(stream);
+
+      const filter = audioContext.createBiquadFilter();
+      filter.type = 'bandpass';
+      filter.frequency.value = 300;
+      filter.Q.value = 1;
+
+      source.connect(filter);
+
+      analyser = audioContext.createAnalyser();
+      analyser.fftSize = 2048;
+
+      filter.connect(analyser);
+      detectPitch();
+    });
+
+    document.getElementById('stopButton').addEventListener('click', () => {
+      if (animationId) cancelAnimationFrame(animationId);
+      if (source) source.disconnect();
+      if (audioContext && audioContext.state !== 'closed') audioContext.close();
+
+      audioContext = null;
+      analyser = null;
+      source = null;
+      lastFrequencies = [];
+      noteDisplay.textContent = '---';
+      freqDisplay.textContent = '---';
+      statusDisplay.textContent = 'Afinador parado';
+      statusDisplay.style.color = '#8b949e';
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    });
+
+    function detectPitch() {
+      analyser.getFloatTimeDomainData(buffer);
+      const freq = autoCorrelate(buffer, audioContext.sampleRate);
+      if (freq) {
+        const smoothed = smoothFrequency(freq);
+        const note = getClosestNote(smoothed);
+        updateUI(note, smoothed);
+      }
+      animationId = requestAnimationFrame(detectPitch);
+    }
+
+    function smoothFrequency(freq) {
+      lastFrequencies.push(freq);
+      if (lastFrequencies.length > 5) lastFrequencies.shift();
+      return lastFrequencies.reduce((a, b) => a + b, 0) / lastFrequencies.length;
+    }
+
+    function getClosestNote(freq) {
+      let closest = null;
+      let minDiff = Infinity;
+      for (const note in notes) {
+        const diff = Math.abs(notes[note] - freq);
+        if (diff < minDiff) {
+          closest = note;
+          minDiff = diff;
+        }
+      }
+      return closest;
+    }
+
+    function updateUI(note, freq) {
+      const target = notes[note];
+      const diff = freq - target;
+      noteDisplay.textContent = `Nota: ${note}`;
+      freqDisplay.textContent = `Detectado: ${freq.toFixed(2)} Hz | Correto: ${target} Hz | Diferença: ${diff.toFixed(2)} Hz`;
+
+      if (Math.abs(diff) < 1.5) {
+        statusDisplay.textContent = "Afinado!";
+        statusDisplay.style.color = "#0f0";
+      } else if (diff < 0) {
+        statusDisplay.textContent = "Afinando para baixo";
+        statusDisplay.style.color = "#1f6feb";
+      } else {
+        statusDisplay.textContent = "Afinando para cima";
+        statusDisplay.style.color = "#f33";
+      }
+
+      drawNeedle(diff);
+    }
+
+    function drawNeedle(diff) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.save();
+      ctx.translate(canvas.width / 2, canvas.height);
+      ctx.rotate((Math.max(-30, Math.min(30, diff)) * Math.PI) / 180);
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(0, -80);
+      ctx.lineWidth = 4;
+      ctx.strokeStyle = "#fff";
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    function autoCorrelate(buf, sampleRate) {
+      let SIZE = buf.length;
+      let rms = 0;
+      for (let i = 0; i < SIZE; i++) rms += buf[i] * buf[i];
+      rms = Math.sqrt(rms / SIZE);
+      if (rms < 0.01) return null;
+
+      let c = new Array(SIZE).fill(0);
+      for (let i = 0; i < SIZE; i++) {
+        for (let j = 0; j < SIZE - i; j++) {
+          c[i] += buf[j] * buf[j + i];
+        }
+      }
+
+      let d = 0;
+      while (c[d] > c[d + 1]) d++;
+
+      let maxval = -1, maxpos = -1;
+      for (let i = d; i < SIZE; i++) {
+        if (c[i] > maxval) {
+          maxval = c[i];
+          maxpos = i;
+        }
+      }
+
+      const T0 = maxpos;
+
+      // Interpolação parabólica
+      const x1 = c[T0 - 1], x2 = c[T0], x3 = c[T0 + 1];
+      const a = (x1 + x3 - 2 * x2) / 2;
+      const b = (x3 - x1) / 2;
+      const shift = a ? -b / (2 * a) : 0;
+      return sampleRate / (T0 + shift);
+    }
+  </script>
+</body>
+</html>
