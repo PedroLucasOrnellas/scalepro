@@ -10,6 +10,18 @@
 
     gtag('config', 'AW-10900086335');
   </script>
+  <!-- Event snippet for Visualização de página conversion page
+  In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+  <script>
+    function gtag_report_conversion() {
+      gtag('event', 'button_click', {
+          'event_category': 'interacao',
+          'event_label': 'init_afinador'
+      });
+      return false;
+    }
+    </script>
+  
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Afinador de Violão e Guitarra | Scale PRO</title>
@@ -199,8 +211,9 @@
     const noteDisplay = document.getElementById('note');
     const freqDisplay = document.getElementById('freq');
     const statusDisplay = document.getElementById('status');
-
+    
     document.getElementById('startButton').addEventListener('click', async () => {
+      gtag_report_conversion();
       if (!audioContext) {
         audioContext = new (window.AudioContext || window.webkitAudioContext)();
       }
