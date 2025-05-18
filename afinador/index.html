@@ -15,6 +15,7 @@
   In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
   <script>
     function gtag_report_conversion() {
+      console.log('Evento personalizado: enviado');
       gtag('event', 'button_click', {
           'event_category': 'interacao',
           'event_label': 'init_afinador'
@@ -168,6 +169,7 @@
   </style>
 </head>
 <body>
+  <menu-circular></menu-circular>
   <section class="container">
       <h1>Afinador de Violão e Guitarra</h1>
       <div class="controls">
@@ -188,6 +190,7 @@
     </div>
   </section>
 
+  <script src="../scripts/menu.js"></script>
   <script>
     const novaUrl = window.location.pathname.replace("afinador/", "afinador");
     window.history.replaceState(null, "", novaUrl); 

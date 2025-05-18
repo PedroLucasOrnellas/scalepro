@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+        <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RC00LD5JNJ"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-RC00LD5JNJ');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Scale Pro é um app para praticar escalas musicais com som, de forma interativa. Ideal para iniciantes e músicos experientes. Totalmente online e gratuito.">
+
+    <title>Treinador de Escalas Musicais Online | Scale PRO</title>
+
+
+    <link rel="stylesheet" href="../styles/variaveis.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="../styles/lateral-direita.css">
+    <link rel="stylesheet" href="../styles/lateral-esquerda.css">
+    <link rel="stylesheet" href="../styles/metronomo.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1453478926316325"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+    <menu-circular></menu-circular>
+    <section class="principal">
+        <div class="topo">
+            <div class="lateral-esquerda">
+                <h3 class="button" id="abrir-notas">notas</h3>
+                <div id="nota-selector">
+                    <div>
+                        <div id="notas-grid">
+                            <!-- Aqui serão inseridos os checkboxes -->
+                        </div>
+                        <button id="salvar_padrao">Salvar</button>
+                        <button id="limpar-notas">Limpar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="lateral-direita">
+                <h3 class="button" id="abrir-sequencias">sequencias</h3>
+                <div id="sequencias-salvas">
+                </div>
+            </div>
+        </div>
+        <div class="controladores">
+            <input type="number" id="tempo" placeholder="Tempo (em segundos)" min="1" value="60">
+            <div class='controles'>
+                <button id="playBtn">Play</button>
+                <button id="stopBtn">Stop</button>
+            </div>
+        </div>
+        
+        <noscript>
+            <div style="padding: 1rem; background-color: #f8f8f8; color: #333; font-size: 14px; line-height: 1.5;">
+              <p><strong>Scale Pro</strong> é uma ferramenta online para praticar escalas musicais com som. Você pode selecionar notas e treinar escalas maiores, menores, cromáticas e modos gregos. Ideal para iniciantes e músicos experientes que tocam <strong>violão</strong>, <strong>teclado</strong>, <strong>guitarra</strong> e outros instrumentos.</p>
+              <p>Este site utiliza JavaScript para funcionar corretamente. Ative o JavaScript no seu navegador para usar todos os recursos.</p>
+            </div>
+          </noscript>
+          
+    </section>
+    <section class="notasRender">
+        <div class="anuncios-esquerda">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1453478926316325"
+            crossorigin="anonymous"></script>
+            <!-- bloco direito -->
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-1453478926316325"
+                data-ad-slot="9256547061"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+        <div class="container">
+            
+            <!-- As notas ativas serão mostradas aqui -->
+        </div>
+        <div class="anuncios-direita">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1453478926316325"
+                crossorigin="anonymous"></script>
+            <!-- bloco direito -->
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-1453478926316325"
+                data-ad-slot="9256547061"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </section>
+
+    <!-- <div id='modal_metronomo' class="controladores metronomo">
+        <h3>Metrônomo</h3>
+       <div>
+           <input type="number" id="bpm" placeholder="BPM" min="1" value="60">
+            <div class='controles'>
+                <button id="playMetronomo">Play</button>
+                <button id="stopMetronomo">Stop </button>
+            </div>
+       </div>
+    </div> -->
+    <!-- <div class="button" id="btn-metronomo" title="Metrônomo">
+        <img src="src/icons/metronomo.png" alt="">
+    </div> -->
+    <div class="audios">
+        <audio id="a" src="src/notes/a.mp3" preload="auto"></audio>
+        <audio id="aSus" src="src/notes/aSus.mp3" preload="auto"></audio>
+        <audio id="b" src="src/notes/b.mp3" preload="auto"></audio>
+        <audio id="c" src="src/notes/c.mp3" preload="auto"></audio>
+        <audio id="cb" src="src/notes/cb.mp3" preload="auto"></audio>
+        <audio id="cSus" src="src/notes/cSus.mp3" preload="auto"></audio>
+        <audio id="d" src="src/notes/d.mp3" preload="auto"></audio>
+        <audio id="dSus" src="src/notes/dSus.mp3" preload="auto"></audio>
+        <audio id="e" src="src/notes/e.mp3" preload="auto"></audio>
+        <audio id="f" src="src/notes/f.mp3" preload="auto"></audio>
+        <audio id="fSus" src="src/notes/fSus.mp3" preload="auto"></audio>
+        <audio id="g" src="src/notes/g.mp3" preload="auto"></audio>
+        <audio id="gSus" src="src/notes/gSus.mp3" preload="auto"></audio>
+    </div>
+
+    <script src="../vars.js"></script>
+    <script src="index.js"></script>
+    <script src="../scripts/notasSalvas.js"></script>
+    <script src="../scripts/lateral-esquerda.js"></script>
+    <script src="../scripts/reproduzirNotas.js"></script>
+    <script src="../scripts/metronomo.js"></script>
+    <script src="../scripts/slideEvents.js"></script>
+    <script src="../scripts/menu.js"></script>
+</body>
+</html>
