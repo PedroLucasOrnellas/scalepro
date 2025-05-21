@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
   <!-- Flaticon -->
   <link rel="stylesheet" href="https://cdn.flaticon.com/css/flaticon.css">
+
   <style>
     body {
       margin: 0;
@@ -20,7 +21,7 @@
     }
 
     header {
-      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1585060544812-cd4e46a4e2d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80') top/cover no-repeat;
+      background: url('/src/images/hero-image-2.png') top/cover no-repeat;
       height: 100vh;
       color: white;
       display: flex;
@@ -30,6 +31,17 @@
       text-align: center;
       padding: 0 20px;
       position: relative;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1;
     }
 
     header h1 {
@@ -114,6 +126,18 @@
       transition: transform 0.3s ease;
     }
 
+    .feature h3 {
+      color: #58a6ff;
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+
+    .feature p {
+      color: #8b949e;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
     .feature:hover {
       transform: translateY(-10px);
       box-shadow: 0 4px 20px rgba(31, 111, 235, 0.3);
@@ -143,23 +167,17 @@
       transform: translateY(-5px);
     }
 
-    .testimonial {
-      background: url('/src/images/hero-image-3.png') center/cover no-repeat;
-      padding: 60px 20px;
-      color: white;
-      text-align: center;
+    .future-item h4 {
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+      color: #58a6ff;
     }
 
-    .testimonial h2 {
-      margin-bottom: 30px;
-    }
-
-    .testimonial p {
-      max-width: 800px;
-      margin: 0 auto 20px;
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 20px;
-      border-radius: 10px;
+    .future-item p {
+      margin: 0;
+      color: #8b949e;
+      font-size: 0.95rem;
+      line-height: 1.5;
     }
 
     footer {
@@ -218,6 +236,7 @@
         <p>Afine seu violão ou guitarra com precisão. Use o microfone do dispositivo para afinação automática ou afine manualmente.</p>
       </div>
       <div class="feature" data-aos="fade-up" data-aos-delay="100">
+        <!-- <img src="https://cdn-icons-png.flaticon.com/512/3083/3083417.png" alt="Treino de Escalas" /> -->
         <img src="https://cdn-icons-png.flaticon.com/512/2995/2995101.png" alt="Treino de Escalas" />
         <h3>Treinador de Escalas</h3>
         <p>Pratique escalas com visualização interativa, modos personalizados e acompanhamento de progresso.</p>
@@ -249,12 +268,6 @@
         <p>Veja escalas desenhadas em tempo real no braço do instrumento com interação por mouse ou toque.</p>
       </div>
     </div>
-  </section>
-
-  <section class="testimonial" data-aos="fade-up">
-    <h2>O que dizem nossos usuários</h2>
-    <p>“O Scale PRO me ajudou a treinar escalas com muito mais clareza e motivação. O afinador é excelente!” – João, guitarrista</p>
-    <p>“Comecei a usar como iniciante e já vejo muito progresso. Interface clara e muito útil.” – Marina, violonista</p>
   </section>
 
   <footer>
